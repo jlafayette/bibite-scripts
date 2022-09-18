@@ -1,21 +1,21 @@
 import zipfile
 from pathlib import Path
-from typing import TypeAlias, Callable
+from typing import TypeAlias, Callable, Optional
 
 
 EditFunc: TypeAlias = Callable[[bytes], bytes]
 
 
-def edit(src: Path, bb8_fn: EditFunc, dst_zip: Path = None):
+def edit(src: Path, bb8_fn: EditFunc, dst_zip: Optional[Path] = None):
     """Edit a saved archive (.zip) file.
 
     Args:
         src: The source archive to edit (creates a copy, will not overwrite).
         bb8_fn: A function to run on the content of each .bb8 Bibite file in the save.
-            This needs to take the contents and the filename as arguments, and return
-            the new contents for the .bb8 file.
+            This needs to take the contents of the file as its argument, and return
+            the new contents for the .bb8 file (both in bytes).
         dst_zip: Path to save the modified save file. If None, this will be named
-            after the src zip, but with a version number.
+            after the src zip, but with a unique version number appended.
 
     """
     if dst_zip is None:
