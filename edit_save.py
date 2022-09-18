@@ -13,7 +13,8 @@ def main():
     def make_bb8_edit_fn() -> bb.archive.EditFunc:
         def fn(contents: bytes) -> bytes:
             new_genes = {
-                "Diet": random.uniform(0.0, 1.0),
+                "BrainMutationSigma": random.uniform(0.15, 0.4),
+                "BrainAverageMutation": random.uniform(1.5, 4.0),
             }
             return bb.bb8.edit_contents(contents, new_genes)
         return fn

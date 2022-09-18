@@ -59,23 +59,21 @@ Overview of current scripts
 
 ### Edit Bibite genes in a save file
 
-This file is a mess currently, but it does work!
-
-```commandline
-python t.py
-```
-
-This will make a copy of the included save file with some genes modified for
+This script makes a copy of the included save file with some genes modified for
 all the Bibites.
 
-Currently this is hardcoded to edit the included save-file, but this can be customized
-by editing the `src` variable in `t2` function:
+```commandline
+python edit_save.py
+```
+
+Currently this is hardcoded to edit the included save-file (`world_autosave_20220917102459.zip`),
+but this can be customized by editing the `src` variable in the `main` function:
 
 ```python
     src = root / "world_autosave_20220917102459.zip"
 ```
 
-Next you may customize the `new_genes` dict in the `t2` function to the ones that
+Next you may customize the `new_genes` dict in the `main` function to the ones that
 you'd like to change.
 
 ```python
