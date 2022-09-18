@@ -1,0 +1,5 @@
+numpy
+# These are required for jupyter notebook (graph.ipynb)
+jupyterlab
+scipy
+matplotlib
