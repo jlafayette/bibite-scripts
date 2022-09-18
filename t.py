@@ -3,7 +3,6 @@ import shutil
 import zipfile
 import random
 from pathlib import Path
-from typing import Callable
 
 import numpy as np
 
@@ -138,7 +137,7 @@ def t():
 def t2():
     src = root / "world_autosave_20220917102459.zip"
 
-    def make_fn() -> Callable[[bytes, str], bytes]:
+    def make_fn() -> bb.archive.EditFunc:
         def f(contents: bytes, filename: str) -> bytes:
             new_genes = {
                 "BrainMutationSigma": random.uniform(0.15, 0.4),

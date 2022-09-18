@@ -1,9 +1,12 @@
 import zipfile
 from pathlib import Path
-from typing import Callable
+from typing import TypeAlias, Callable
 
 
-def edit(src: Path, bb8_fn: Callable[[bytes, str], bytes], dst_zip: Path = None):
+EditFunc: TypeAlias = Callable[[bytes, str], bytes]
+
+
+def edit(src: Path, bb8_fn: EditFunc, dst_zip: Path = None):
     """Edit a saved archive (.zip) file.
 
     Args:
