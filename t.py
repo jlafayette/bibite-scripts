@@ -138,16 +138,12 @@ def t2():
     src = root / "world_autosave_20220917102459.zip"
 
     def make_fn() -> bb.archive.EditFunc:
-        def f(contents: bytes, filename: str) -> bytes:
+        def f(contents: bytes) -> bytes:
             new_genes = {
                 "BrainMutationSigma": random.uniform(0.15, 0.4),
                 "BrainAverageMutation": random.uniform(1.5, 4.0),
             }
-            try:
-                contents = bb.bb8.edit_contents(contents, filename, new_genes)
-            except KeyError as err:
-                print(f"Failed to update {filename} with {err.__class__.__name__}: {err}")
-            return contents
+            return bb.bb8.edit_contents(contents, new_genes)
         return f
 
     bb.archive.edit(src, make_fn())

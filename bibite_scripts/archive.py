@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import TypeAlias, Callable
 
 
-EditFunc: TypeAlias = Callable[[bytes, str], bytes]
+EditFunc: TypeAlias = Callable[[bytes], bytes]
 
 
 def edit(src: Path, bb8_fn: EditFunc, dst_zip: Path = None):
@@ -30,7 +30,7 @@ def edit(src: Path, bb8_fn: EditFunc, dst_zip: Path = None):
             for item in zin.infolist():
                 contents = zin.read(item.filename)
                 if item.filename.endswith(".bb8"):
-                    contents = bb8_fn(contents, item.filename)
+                    contents = bb8_fn(contents)
                 zout.writestr(item, contents)
 
 
